@@ -1,22 +1,29 @@
+<script>
+    import { enhance } from '$app/forms';
+
+    /** @type {import('./$types').ActionData} */
+    export let form;
+</script>
+
 <div classname="auth-page">
     <div classname="container page">
         <div classname="row">
             <div classname="col-md-6 offset-md-3 col-xs-12">
                 <h1 classname="text-xs-center">Login</h1>
 
-                <form method="POST">
+                <form use:enhance method="POST">
                     <fieldset classname="form-group">
                         <input
-                                classname="form-control form-control-lg"
-                                name="email"
-                                type="email"
+                                class="form-control form-control-lg"
+                                name="username"
+                                type="text"
                                 required
-                                placeholder="Email"
+                                placeholder="Your Name"
                         />
                     </fieldset>
                     <fieldset classname="form-group">
                         <input
-                                classname="form-control form-control-lg"
+                                class="form-control form-control-lg"
                                 name="password"
                                 type="password"
                                 required

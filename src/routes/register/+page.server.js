@@ -9,7 +9,7 @@ export const actions = {
     default: async ({ cookies, request }) => {
         const data = await request.formData();
 
-        const body = await api.post('users/login', {
+        const body = await api.post('users/register', {
             username: data.get('username'),
             password: data.get('password')
         });
@@ -18,7 +18,16 @@ export const actions = {
             return fail(401, body);
         }
 
-        cookies.set('jwt', body.jwt, { path: '/' });
+        const bodyLog = await api.post('users/login', {
+            username: data.get('username'),
+            password: data.get('password')
+        });
+
+        if (bodyLog.errors) {
+            return fail(401, bodyLog);
+        }
+
+        cookies.set('jwt', bodyLog.jwt, { path: '/' });
         throw redirect(307, '/locations');
     }
 };
