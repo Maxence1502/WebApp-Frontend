@@ -6,7 +6,6 @@
     let films = data.body;
     let isLoggedIn = (data.userRole != "guest")
 
-    let items = [];
     let currentPage = 1;
     let itemsPerPage = 10;
 
@@ -35,9 +34,12 @@
         }
     </style>
 
-    <a href="/addLocation">
-        <button>Add Location</button>
-    </a>
+    {#if (data.userRole == "admin")}
+        <a href="/locations/add">
+            <button>Ajouter une location</button>
+        </a>
+    {/if}
+
     <table>
         <tr>
             <th>Type de film</th>
@@ -54,13 +56,7 @@
         </tr>
 
         {#each getPageItems() as film}
-            <tr>
-                <!--                <button on:click={() => editLoc()}>
-                                    Edit Location
-                                </button>
-                                <button on:click={() => deleteLoc()}>
-                                    Delete Location
-                                </button>-->
+            <tr on:click={() => showModal = {film: film, user: data.user, userRole: data.userRole}}>
                 <td>{film.filmType}</td>
                 <td>{film.filmProducerName}</td>
                 <td>{film.endDate}</td>
@@ -72,9 +68,7 @@
                 <td>{film.startDate}</td>
                 <td>{film.year}</td>
                 <td>
-                    <button on:click={() => showModal = {data: film}}>
-                        Afficher
-                    </button>
+                    <button on:click={() => showModal = {film: film, user: data.user, userRole: data.userRole}}>Afficher</button>
                 </td>
             </tr>
         {/each}
@@ -85,12 +79,12 @@
             Précédent
         </button>
         <span>{currentPage}</span>
-        <button disabled={currentPage === Math.ceil(items.length / itemsPerPage)} on:click={() => currentPage++}>
+        <button disabled={currentPage === Math.ceil(films.length / itemsPerPage)} on:click={() => currentPage++}>
             Suivant
         </button>
     </div>
 
     {#if showModal}
-        <Modal close={() => showModal = false} data={showModal.data} />
+        <Modal close={() => showModal = false} film={showModal.film} user={showModal.user} userRole={showModal.userRole} />
     {/if}
 {/if}
