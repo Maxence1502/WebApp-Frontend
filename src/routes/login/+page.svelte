@@ -5,14 +5,14 @@
     export let form;
 </script>
 
-<div classname="auth-page">
-    <div classname="container page">
-        <div classname="row">
-            <div classname="col-md-6 offset-md-3 col-xs-12">
-                <h1 classname="text-xs-center">Login</h1>
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Login</h1>
 
                 <form use:enhance method="POST">
-                    <fieldset classname="form-group">
+                    <fieldset class="form-group">
                         <input
                                 class="form-control form-control-lg"
                                 name="username"
@@ -21,7 +21,7 @@
                                 placeholder="Your Name"
                         />
                     </fieldset>
-                    <fieldset classname="form-group">
+                    <fieldset class="form-group">
                         <input
                                 class="form-control form-control-lg"
                                 name="password"
@@ -30,7 +30,7 @@
                                 placeholder="Password"
                         />
                     </fieldset>
-                    <button classname="btn btn-lg btn-primary pull-xs-right" type="submit">Login</button>
+                    <button class="btn btn-lg btn-primary pull-xs-right"type="submit">Login</button>
                 </form>
             </div>
         </div>

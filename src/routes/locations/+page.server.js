@@ -6,17 +6,16 @@ export async function load({ locals, params }) {
         throw redirect(301, '/');
     }
 
-    let isAdmin = (locals.role == "admin")
+    let userRole = locals.role
+    let body = []
 
-    /*if (!locals.user.isAdmin) {
-        throw error(403, 'not an admin');
-    }*/
+    if (userRole != "guest") {
+        const body = await api.get('locations', locals.user);
 
-    const body = await api.get('locations', locals.user);
-
-    if (body.errors) {
-        return fail(401, body);
+        if (body.errors) {
+            return fail(401, body);
+        }
     }
 
-    return { body, isAdmin };
+    return { body, userRole };
 }

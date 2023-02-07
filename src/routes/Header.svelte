@@ -1,5 +1,7 @@
 <script>
 	import { page } from '$app/stores';
+
+	let isLoggedIn = false;
 </script>
 
 <header>
@@ -10,15 +12,24 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Main</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/login' ? 'page' : undefined}>
-				<a href="/login">Login</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/register' ? 'page' : undefined}>
-				<a href="/register">Create account</a>
-			</li>
+			{#if !isLoggedIn}
+				<li aria-current={$page.url.pathname === '/login' ? 'page' : undefined}>
+					<a href="/login">Login</a>
+				</li>
+				<li aria-current={$page.url.pathname === '/register' ? 'page' : undefined}>
+					<a href="/register">Create account</a>
+				</li>
+			{/if}
+
+			{#if isLoggedIn}
+				<li aria-current={$page.url.pathname === '/locations' ? 'page' : undefined}>
+					<a href="/locations">Locations</a>
+				</li>
+
+				<li aria-current={$page.url.pathname === '/xxxxxxxxx' ? 'page' : undefined}>
+					<a on:click={() => {document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";}} style="cursor: pointer">Logout</a>
+				</li>
+			{/if}
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
