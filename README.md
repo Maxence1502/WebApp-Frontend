@@ -22,7 +22,7 @@ The register page is available at : http://localhost:5173/register
 ### One “Location” page in which all locations are listed in a paginated array
 To see the list of locations you must be logged in and access this page: http://localhost:5173/locations
 
-A pagination system has been added but it does not update the data at the moment.
+A pagination system has been added to check the previous / next page with 10 films per page (can be changed in the code).
 
 # User stories
 

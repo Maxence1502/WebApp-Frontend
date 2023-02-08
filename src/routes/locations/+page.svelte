@@ -1,22 +1,29 @@
 <script>
     import Modal from './modal.svelte';
+    import { onMount } from 'svelte';
+    import * as api from "$lib/api.js";
+
     let showModal = false;
 
     export let data;
-    let films = data.body;
     let isLoggedIn = (data.userRole != "guest")
-
-    let currentPage = 1;
-    let itemsPerPage = 10;
-
-    function getPageItems() {
-        let startIndex = (currentPage - 1) * itemsPerPage;
-        let endIndex = startIndex + itemsPerPage;
-        return films.slice(startIndex, endIndex);
-    }
 
     if (!isLoggedIn) {
         window.location.href = '/login';
+    }
+
+    let currentPage = 0;
+    let films = [];
+
+    onMount(async () => {
+        changePage(0)
+    });
+
+    async function changePage(newPage) {
+        let filmsPerPage = 10;
+
+        currentPage = newPage;
+        films = await api.get(`locations?offset=${newPage * filmsPerPage}&limit=${filmsPerPage}`, data.user);
     }
 </script>
 
@@ -57,7 +64,7 @@
             <th>Afficher / modifier</th>
         </tr>
 
-        {#each getPageItems() as film}
+        {#each films as film}
             <tr on:click={() => showModal = {film: film, user: data.user, userRole: data.userRole}}>
                 <td>{film.filmType}</td>
                 <td>{film.filmProducerName}</td>
@@ -71,13 +78,9 @@
     </table>
 
     <div class="pagination">
-        <button disabled={currentPage === 1} on:click={() => {currentPage--; getPageItems()}}>
-            Précédent
-        </button>
-        <div>{currentPage} / {Math.ceil(films.length / itemsPerPage)}</div>
-        <button disabled={currentPage === Math.ceil(films.length / itemsPerPage)} on:click={() => {currentPage++; getPageItems()}}>
-            Suivant
-        </button>
+        <button disabled={currentPage === 0} on:click={() => changePage(currentPage - 1)}>&lt;</button>
+        <span>{currentPage + 1}</span>
+        <button on:click={() => changePage(currentPage + 1)}>&gt;</button>
     </div>
 
     {#if showModal}
