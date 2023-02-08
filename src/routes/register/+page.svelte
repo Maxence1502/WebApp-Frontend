@@ -9,7 +9,10 @@
     <div class="container page">
         <div class="row">
             <div class="col-md-6 offset-md-3 col-xs-12">
-                <h1 class="text-xs-center">Create an account</h1>
+                <h1 class="text-xs-center">Créer un compte</h1>
+                <p class="text-xs-center">
+                    <a href="/login">Se connecter ?</a>
+                </p>
 
                 <form use:enhance method="POST">
                     <fieldset class="form-group">
@@ -18,7 +21,7 @@
                                 name="username"
                                 type="text"
                                 required
-                                placeholder="Your Name"
+                                placeholder="Nom d'utilisateur"
                         />
                     </fieldset>
                     <fieldset class="form-group">
@@ -27,11 +30,11 @@
                                 name="password"
                                 type="password"
                                 required
-                                placeholder="Password"
+                                placeholder="Mot de passe"
                         />
                     </fieldset>
 
-                    <button class="btn btn-lg btn-primary pull-xs-right">Register</button>
+                    <button class="btn btn-lg btn-primary pull-xs-right">Créer un compte</button>
                 </form>
             </div>
         </div>

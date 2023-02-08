@@ -7,7 +7,6 @@
     export let userRole;
 
     async function deleteLocation(id) {
-        console.log(id)
         await api.del(`locations/${id}`, user);
         window.location.reload();
     }
@@ -15,7 +14,7 @@
 
 <div class="modal-overlay">
     <div class="modal-content">
-        <h2 class="modal-title">Informations de la location</h2>
+        <h3 class="modal-title">Informations de la location</h3>
         <br/><br/>
 
         <div>Type de film : {film.filmType}</div>
@@ -31,11 +30,11 @@
 
         <div class="modal-actions">
             {#if (userRole == "admin")}
-                <button on:click={close}>Modifier</button>
+                <button onclick="window.location.href='/locations/edit/{film._id}'">Modifier</button>
                 <button on:click={() => {deleteLocation(film._id)}}>Supprimer</button>
             {/if}
 
-            <button on:click={() => {close}}>Annuler</button>
+            <button on:click={close}>Fermer</button>
         </div>
     </div>
 </div>

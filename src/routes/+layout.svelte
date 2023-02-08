@@ -1,4 +1,6 @@
 <script>
+	import { enhance } from '$app/forms';
+
 	import './styles.css';
 	import { page } from '$app/stores';
 
@@ -30,7 +32,11 @@
 					</li>
 
 					<li>
-						<a on:click={() => {document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";}} style="cursor: pointer">Se déconnecter</a>
+						<a>
+							<form use:enhance method="POST" action="/logout">
+								<button class="btn btn-outline-danger">Se déconnecter</button>
+							</form>
+						</a>
 					</li>
 				{/if}
 			</ul>

@@ -7,3 +7,11 @@ export async function load({ locals }) {
         throw redirect(307, '/login');
     }
 }
+
+/** @type {import('./$types').Actions} */
+export const actions = {
+    logout: async ({ cookies, locals }) => {
+        cookies.delete('jwt', { path: '/' });
+        locals.user = null;
+    },
+};

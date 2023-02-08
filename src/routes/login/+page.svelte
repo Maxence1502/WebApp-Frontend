@@ -10,6 +10,9 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 col-xs-12">
                 <h1 class="text-xs-center">Login</h1>
+                <p class="text-xs-center">
+                    <a href="/register">Créer un compte?</a>
+                </p>
 
                 <form use:enhance method="POST">
                     <fieldset class="form-group">
@@ -18,7 +21,7 @@
                                 name="username"
                                 type="text"
                                 required
-                                placeholder="Your Name"
+                                placeholder="Nom d'utilisateur"
                         />
                     </fieldset>
                     <fieldset class="form-group">
@@ -27,10 +30,11 @@
                                 name="password"
                                 type="password"
                                 required
-                                placeholder="Password"
+                                placeholder="Mot de passe"
                         />
                     </fieldset>
-                    <button class="btn btn-lg btn-primary pull-xs-right"type="submit">Login</button>
+
+                    <button class="btn btn-lg btn-primary pull-xs-right"type="submit">Se connecter</button>
                 </form>
             </div>
         </div>
