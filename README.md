@@ -4,7 +4,7 @@
 
 The backend is from : https://github.com/RochMoreau/secure-web-dev-backend
 
-It should run on http://localhost:3000/
+It should run on https://secure-web-dev-backend-6pl8.onrender.com
 
 ### Run the app
 To run locally, run ```npm run dev```
